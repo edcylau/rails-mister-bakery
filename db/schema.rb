@@ -10,9 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2020_04_23_064848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "amounts", force: :cascade do |t|
+    t.string "description"
+    t.bigint "sourdough_id", null: false
+    t.bigint "amount_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["amount_id"], name: "index_amounts_on_amount_id"
+    t.index ["sourdough_id"], name: "index_amounts_on_sourdough_id"
+  end
+
+  create_table "ingredients", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "sourdoughs", force: :cascade do |t|
+    t.string "name"
+    t.bigint "hydration"
+    t.string "photo"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "amounts", "amounts"
+  add_foreign_key "amounts", "sourdoughs"
 end
