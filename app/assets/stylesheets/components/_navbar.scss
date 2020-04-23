@@ -10,3 +10,12 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+// .dropdown-toggle:hover {
+//   text-decoration: none;
+//   justify-content: center;
+// }
+
+.dropdown-toggle::after {
+  display:none;
+}
